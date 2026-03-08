@@ -1,18 +1,27 @@
+//
 // Flappy Bird
+//
 // Created by Dor Shitrit
 
 // declerations
 Image bg = new Image();
 Image ground = new Image();
-Music theme = new Music();
-Music wing = new Music();
-Music hit = new Music();
-Music lose = new Music();
 Image bird = new Image();
 Image tPipe = new Image();
 Image bPipe = new Image();
 Image tPipe1 = new Image();
 Image bPipe1 = new Image();
+
+Music theme = new Music();
+Music wing = new Music();
+Music hit = new Music();
+Music lose = new Music();
+
+Text score = new Text();
+Text finalScore = new Text();
+Text gameOver = new Text();
+
+Rect end = new Rect();
 
 // global variables
 int counter = 0;
@@ -21,6 +30,8 @@ float gravity = 0.5;       // Gravity pulling the bird down
 float jumpStrength = -7;
 float birdAngle = 0;
 int loser = 0;
+int loseFlag = 0;
+int points = 0;
 
 
 void setup() {
@@ -92,6 +103,31 @@ void setup() {
   if (bPipe1.y >= 550) { // fix 2nd buttom pipe location
     bPipe1.y = 500;
   }
+  
+  score.text = str(points);
+  score.x = width/2;
+  score.y = 50;
+  score.textSize = 40;
+  score.brush = color(255);
+  
+  finalScore.text = "Your score is: " + points;
+  finalScore.x = 300;
+  finalScore.y = 380;
+  finalScore.textSize = 50;
+  finalScore.brush = color(#E6F700);
+  
+  gameOver.text = "GAME OVER!";
+  gameOver.x = 320;
+  gameOver.y = 300;
+  gameOver.textSize = 50;
+  gameOver.brush = color(#E6F700);
+  
+  end.x = 250;
+  end.y = 245;
+  end.width = 410;
+  end.height = 160;
+  end.pen = 30;
+  end.brush = color(153,51,0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -104,6 +140,8 @@ void draw() {
   bPipe1.draw();
   ground.draw();
   bird.draw();
+  score.text = str(points);
+  score.draw();
 
   
   birdVelocity += gravity; // add gravity to speed
@@ -122,7 +160,7 @@ void draw() {
     bPipe.x = 900;
     counter = counter + 1;
   }
-  if (counter >= 5) { // add 2nd pipes after 5 iterations
+  if ((counter >= 5) && (loseFlag == 0)) { // add 2nd pipes after 5 iterations
     addPipe();
   }
     if (tPipe1.x < -150) { // reset 2nd pipes location
@@ -130,13 +168,18 @@ void draw() {
       int gap1 = int(random(150, 400));
       bPipe1.y = 1664 + tPipe1.y + gap1;
       if (bPipe1.y >= 550) {
-        bPipe1.y = 520;
+        bPipe1.y = 450;
       }
       tPipe1.x = 900;
       bPipe1.x = 900;
     }
   
-  borders(); // check bird doesn't hit anything
+  borders(); // check if the bird doesn't hit anything
+  finalScore.text = "Your score is : " + points;
+  if ((tPipe.x + 100 == bird.x) || (tPipe1.x + 100 == bird.x)){
+    hit.play();
+    points++;
+  }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -166,42 +209,56 @@ void keyPressed() {
 void borders() {
   if (tPipe.pointInShape(bird.x, bird.y)) {
     done();
-    hit.play();
-  }
+    }
+  
   if (bPipe.pointInShape(bird.x, bird.y)) {
     done();
-    hit.play();
   }
+  
   if (tPipe1.pointInShape(bird.x, bird.y)) {
     done();
-    hit.play();
   }
+  
   if (bPipe1.pointInShape(bird.x, bird.y)) {
     done();
-    hit.play();
   }
+  
   if (ground.pointInShape(bird.x, bird.y + 60)) {
-    done();
     birdVelocity = 0;
-    lose.play();
+    done();
   }
+
   if (bird.y < -100) {// make function
     done();
   }
 }
+  
 
 /////////////////////////////////////////////////////////////////////////////////////
 
 void done() {
   //bird.direction = Direction.DOWN;
   //bird.speed = 20;
+  if(loseFlag == 0){
+  lose.play();
+  }
+  loseFlag = 1;
   tPipe.speed = 0;
   bPipe.speed = 0;
   tPipe1.speed = 0;
   bPipe1.speed = 0;
   loser = 1;
+  if (ground.pointInShape(bird.x, bird.y + 60)) {
+  end.draw();
+  gameOver.draw();
+  if(points >= 10){
+    finalScore.x = 290;
+  }
+  finalScore.draw();
+  }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
 
 void addPipe() {
   if (tPipe.x < 450) {
