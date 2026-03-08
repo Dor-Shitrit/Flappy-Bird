@@ -1,4 +1,4 @@
-# Flappy Bird
+# 🐦 Flappy Bird
 
 <p align="center">
   A classic <b>arcade flying game</b> inspired by <b>Flappy Bird</b>, where the player controls a bird and tries to fly through pipes while avoiding collisions and achieving the highest score.
@@ -6,13 +6,13 @@
 
 ---
 
-## Game Preview
+## 🎮 Game Preview
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fb8f3a65-04fb-4e55-ba05-5ddc9d80f172" width="700"/>
 </p>
 
-## About the Game
+## 🕹 About the Game
 
 **Flappy Bird** is a single-player arcade game built in **Processing**.
 
@@ -20,7 +20,7 @@ The player controls a bird that constantly falls due to gravity and must fly thr
 
 Pipes move from right to left across the screen, and the player must carefully time jumps to avoid hitting them.
 
-### Objective
+### 🎯 Objective
 
 - Fly through as many pipes as possible
 - Avoid hitting pipes or the ground
@@ -28,7 +28,7 @@ Pipes move from right to left across the screen, and the player must carefully t
 
 ---
 
-## Gameplay Rules
+## 📜 Gameplay Rules
 
 - The bird is affected by **gravity**
 - Pressing jump gives the bird an **upward impulse**
@@ -42,7 +42,7 @@ Pipes move from right to left across the screen, and the player must carefully t
 
 ---
 
-## Controls
+## 🎹 Controls
 
 | Key / Input | Action |
 |---|---|
@@ -52,7 +52,7 @@ Pipes move from right to left across the screen, and the player must carefully t
 
 ---
 
-## Features
+## ✨ Features
 
 - Classic Flappy Bird gameplay
 - Gravity-based physics
@@ -65,7 +65,7 @@ Pipes move from right to left across the screen, and the player must carefully t
 
 ---
 
-## Built With
+## 🛠 Built With
 
 - **Processing**
 - **Java-based game logic**
@@ -74,19 +74,18 @@ Pipes move from right to left across the screen, and the player must carefully t
 
 ---
 
-## How to Run
+## 🚀 How to Run
 
 1. Install **Processing**
 2. Clone this repository:
    ```bash
    git clone https://github.com/YOUR_USERNAME/Flappy-Bird.git
-   ```
 3. Open `FlappyBird.pde` in the **Processing IDE**
 4. Make sure all image and audio files are inside the `data` folder
 5. Click **Run**
 
 ---
 
-## Author
+## 👨🏽‍💻 Author
 
 Created by **Dor Shitrit**
