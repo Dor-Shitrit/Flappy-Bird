@@ -9,7 +9,7 @@
 ## 🎮 Game Preview
  
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/fb8f3a65-04fb-4e55-ba05-5ddc9d80f172" width="700"/>
+<img src="Assets/Flappy_Bird.gif" width="700">
 </p>
 
 ## 🕹 About the Game
